@@ -1,0 +1,152 @@
+%% GABARIT POUR MÉMOIRE STANDARD
+%%
+%% Consulter la documentation de la classe ulthese pour une
+%% description détaillée de la classe, de ce gabarit et des options
+%% disponibles.
+%%
+%% [Ne pas hésiter à supprimer les commentaires après les avoir lus.]
+%%
+%% Déclaration de la classe avec le type de grade
+%%   [l'un de MATDR, MArch, MA, LLM, MErg, MMus, MPht, MSc, MScGeogr,
+%%    MServSoc, MPsEd]
+%% et les langues les plus courantes. Le français sera la langue par
+%% défaut du document.
+\documentclass[MSc,english,french]{ulthese}
+  %% Encodage utilisé pour les caractères accentués dans les fichiers
+  %% source du document. Les gabarits sont encodés en UTF-8. Inutile
+  %% avec XeLaTeX, qui gère Unicode nativement.
+  \ifxetex\else \usepackage[utf8]{inputenc} \fi
+
+  %% Charger ici les autres paquetages nécessaires pour le document.
+  %% Quelques exemples; décommenter au besoin.
+\usepackage{amsmath}       % recommandé pour les mathématiques
+\allowdisplaybreaks
+\usepackage{psfrag}
+\usepackage{mathptmx}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage{verbatim}
+\usepackage{afterpage}
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\usepackage{listings} 
+\lstloadlanguages{R} 
+\lstset{language=MATLAB} 
+\lstset{% 
+inputencoding=utf8, 
+extendedchars=true, 
+literate=% 
+{é}{{\'{e}}}1 
+{è}{{\`{e}}}1 
+{ê}{{\^{e}}}1 
+{ë}{{\¨{e}}}1 
+{û}{{\^{u}}}1 
+{ù}{{\`{u}}}1 
+{â}{{\^{a}}}1 
+{à}{{\`{a}}}1 
+{î}{{\^{i}}}1 
+{ç}{{\c{c}}}1 
+{Ç}{{\c{C}}}1 
+{É}{{\'{E}}}1 
+{Ê}{{\^{E}}}1 
+{À}{{\`{A}}}1 
+{Â}{{\^{A}}}1 
+{Î}{{\^{I}}}1 
+}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+  %\usepackage{ncccomma}      % gestion de la virgule dans les nombres
+
+  %% Utilisation d'une autre police de caractères pour le document.
+  %% - Sous LaTeX
+  %\usepackage{mathpazo}      % texte et mathématiques en Palatino
+  %\usepackage{mathptmx}      % texte et mathématiques en Times
+  %% - Sous XeLaTeX
+  %\setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
+  %\setmathfont{TeX Gyre Pagella Math} % mathématiques en Pagella (Palatino)
+  %\setmainfont{TeX Gyre Termes}       % texte en Termes (Times)
+  %\setmathfont{TeX Gyre Termes Math}  % mathématiques en Termes (Times)
+
+  %% Gestion des hyperliens dans le document. S'assurer que hyperref
+  %% est le dernier paquetage chargé.
+  \usepackage{hyperref}
+  \hypersetup{colorlinks,allcolors=ULlinkcolor}
+
+  %% Options de mise en forme du mode français de babel. Consulter la
+  %% documentation du paquetage babel pour les options disponibles.
+  %% Désactiver (effacer ou mettre en commentaire) si l'option
+  %% 'nobabel' est spécifiée au chargement de la classe.
+  \frenchbsetup{%
+    StandardItemizeEnv=true,       % format standard des listes
+    ThinSpaceInFrenchNumbers=true, % espace fine dans les nombres
+    og=«, fg=»                     % caractères « et » sont les guillemets
+  }
+
+  %% Style de la bibliographie.
+ \bibliographystyle{}
+
+  %% Déclarations des pages de titre. Remplacer les éléments entre < >.
+  %% Supprimer les caractères < >. Couper un long titre ou un long
+  %% sous-titre manuellement avec \\.
+  \titre{Analyse de mécanismes parallèles translationnels suspendus entraînés par câbles}
+  % \titre{Ceci est un exemple de long titre \\
+  %   avec saut de ligne manuel}
+  % \soustitre{Sous-titre le cas échéant}
+  % \soustitre{Ceci est un exemple de long sous-titre \\
+  %   avec saut de ligne manuel}
+  \auteur{Jordan M. Longval}
+  \annee{2018}
+  \programme{Maîtrise en génie mécanique}
+  \direction{Clément Gosselin, directeur de recherche}
+  % \codirection{<Prénom Nom>, <codirecteur ou codirectrice> de recherche}
+  % \codirection{<Prénom Nom>, <codirecteur ou codirectrice> de recherche \\
+  %              <Prénom Nom>, <codirecteur ou codirectrice> de recherche}
+
+\begin{document}
+
+\frontmatter                    % pages liminaires
+
+\pagestitre                     % production des pages de titre
+
+\include{tex/resume}                % résumé français
+\include{tex/abstract}              % résumé anglais
+\cleardoublepage
+
+\tableofcontents                % production de la TdM
+\cleardoublepage
+
+\listoftables                   % production de la liste des tableaux
+\cleardoublepage
+
+\listoffigures                  % production de la liste des figures
+\cleardoublepage
+
+\dedicace{Dédicace si désiré}
+\cleardoublepage
+
+\epigraphe{Texte de l'épigraphe}{Source ou auteur}
+\cleardoublepage
+
+\include{tex/remerciements}         % remerciements
+\include{tex/avantpropos}           % avant-propos
+
+\mainmatter                     % corps du document
+
+\include{tex/introduction}          % introduction
+\include{tex/chapitre1}             % chapitre 1
+\include{tex/chapitre2}             % chapitre 2, etc.
+\include{tex/conclusion}            % conclusion
+
+\appendix                       % annexes le cas échéant
+
+\include{tex/annexeA}                % annexe A
+\include{tex/annexeB}
+\include{tex/annexeC} % annexe B
+
+\bibliography{}                 % production de la bibliographie
+
+\end{document}
+
